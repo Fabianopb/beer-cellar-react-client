@@ -8,9 +8,9 @@ class Login extends Component {
       email: this._email.value,
       password: this._password.value
     };
-    axios.post('http://localhost:9000/user/login', credentials)
+    axios.post('http://beer-cellar-api.herokuapp.com/user/login', credentials)
       .then(function (response) {
-        console.log(response);
+        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);
