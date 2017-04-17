@@ -14,10 +14,10 @@ class App extends Component {
       <Router>
         <div>
           <Route path="/login" component={ Login } />
-          <Layout>
+          {/*<Layout>
             <Route exact path="/" component={ Home } />
             <Route path="/about" component={ About } />
-          </Layout>
+          </Layout>*/}
         </div>
       </Router>
     );
