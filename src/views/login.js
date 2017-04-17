@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class Login extends Component {
 
@@ -7,6 +8,13 @@ class Login extends Component {
       email: this._email.value,
       password: this._password.value
     };
+    axios.post('http://localhost:9000/user/login', credentials)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {
