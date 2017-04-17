@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import Requests from '../resources/requests';
 
 class Login extends Component {
 
@@ -8,13 +8,9 @@ class Login extends Component {
       email: this._email.value,
       password: this._password.value
     };
-    axios.post('http://beer-cellar-api.herokuapp.com/user/login', credentials)
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    Requests.userLogin(credentials).then((response) => {
+      console.log(response.data);
+    });
   }
 
   render() {
