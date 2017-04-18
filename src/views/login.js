@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Requests from '../resources/requests';
+import Requests from '../modules/requests';
 
 class Login extends Component {
 
