@@ -6,7 +6,7 @@ import Home from './views/home';
 import Login from './views/login';
 
 import './App.css';
-console.log(localStorage.getItem('token'));
+
 class App extends Component {
   render() {
     return (
