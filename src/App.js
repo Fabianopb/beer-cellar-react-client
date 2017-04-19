@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import './App.css';
 
 import About from './views/about';
 import Home from './views/home';
 import Login from './views/login';
 
+import './App.css';
+console.log(localStorage.getItem('token'));
 class App extends Component {
   render() {
     return (

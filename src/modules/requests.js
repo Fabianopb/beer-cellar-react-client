@@ -6,8 +6,17 @@ class Requests {
     this.baseUrl = 'http://beer-cellar-api.herokuapp.com';
   }
 
-  userLogin(credentials) {
+  loginUser(credentials) {
     return axios.post(`${this.baseUrl}/user/login`, credentials);
+  }
+
+  getUserProfile(token) {
+    return axios.get(`${this.baseUrl}/user/profile`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
   }
 
 }

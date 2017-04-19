@@ -3,13 +3,14 @@ import Requests from '../modules/requests';
 
 class Login extends Component {
 
-  _doSomething() {
+  login() {
     const credentials = {
       email: this._email.value,
       password: this._password.value
     };
-    Requests.userLogin(credentials).then((response) => {
+    Requests.loginUser(credentials).then((response) => {
       console.log(response.data);
+      localStorage.setItem('token', response.data.token);
     });
   }
 
@@ -18,7 +19,7 @@ class Login extends Component {
       <div>
         <input type="text" placeholder="email" ref={ (input) => this._email = input } />
         <input type="password" placeholder="password" ref={ (input) => this._password = input } />
-        <button onClick={ this._doSomething.bind(this) }>Log in</button>
+        <button onClick={ this.login.bind(this) }>Log in</button>
       </div>
     );
   }
