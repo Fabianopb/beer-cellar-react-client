@@ -2,14 +2,6 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Requests from '../modules/requests';
 
-const LoginForm = () => (
-  <div>
-    <input type="text" placeholder="email" ref={ (input) => this._email = input } />
-    <input type="password" placeholder="password" ref={ (input) => this._password = input } />
-    <button onClick={ this._login.bind(this) }>Log in</button>
-  </div>
-);
-
 class Login extends Component {
 
   constructor(props) {
@@ -23,7 +15,7 @@ class Login extends Component {
     if (localStorage.getItem('token')) {
       this.setState({ data: <Redirect to='/about' /> });
     } else {
-      this.setState({ data: <LoginForm /> });
+      this.setState({ data: this._renderLoginForm() });
     }
   }
 
@@ -40,6 +32,16 @@ class Login extends Component {
       localStorage.removeItem('token');
       console.log(error.response.statusText, 'invalid login!');
     });
+  }
+
+  _renderLoginForm() {
+    return (
+      <div>
+        <input type="text" placeholder="email" ref={ (input) => this._email = input } />
+        <input type="password" placeholder="password" ref={ (input) => this._password = input } />
+        <button onClick={ this._login.bind(this) }>Log in</button>
+      </div>
+    );
   }
 
   render() {

@@ -23,11 +23,17 @@ class About extends Component {
     });
   }
 
+  _logout() {
+    localStorage.removeItem('token');
+    this.setState({ data: <Redirect to='/login' /> });
+  }
+
   _renderUserData(user) {
     return (
       <div>
         <p>User Name: {user.name}</p>
         <p>email: {user.email}</p>
+        <button onClick={ this._logout.bind(this) }>Log out</button>
       </div>
     );
   }
