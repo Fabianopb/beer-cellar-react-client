@@ -19,6 +19,15 @@ class Requests {
     });
   }
 
+  getBeers(token) {
+    return axios.get(`${this.baseUrl}/beers`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+  }
+
 }
 
 export default Requests = new Requests();
