@@ -25,7 +25,6 @@ class Login extends Component {
       password: this._password.value
     };
     Requests.loginUser(credentials).then((response) => {
-      console.log(response.data);
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('expiry', response.data.expiry);
       this.setState({ data: <Redirect to='/about' /> });

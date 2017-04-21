@@ -18,6 +18,7 @@ class About extends Component {
       this.setState({ data: this._renderUserData(response.data) });
     }).catch((error) => {
       localStorage.removeItem('token');
+      localStorage.removeItem('expiry');
       console.log(error.response.statusText, 'redirecting to login page...');
       this.setState({ data: <Redirect to='/login' /> });
     });
@@ -25,6 +26,7 @@ class About extends Component {
 
   _logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('expiry');
     this.setState({ data: <Redirect to='/login' /> });
   }
 
