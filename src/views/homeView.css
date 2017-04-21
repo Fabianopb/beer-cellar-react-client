@@ -1,0 +1,16 @@
+.home-view {
+  padding: 10px;
+  background-color: wheat;
+  height: 40px;
+  display: flex;
+}
+
+.logo {
+  flex: 1;
+  text-align: left;
+}
+
+.login-area {
+  flex: 1;
+  text-align: right;
+}
