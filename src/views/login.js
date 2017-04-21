@@ -12,7 +12,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('expiry') && +new Date(localStorage.getItem('expiry')) > +new Date()) {
       this.setState({ data: <Redirect to='/about' /> });
     } else {
       this.setState({ data: this._renderLoginForm() });
@@ -27,6 +27,7 @@ class Login extends Component {
     Requests.loginUser(credentials).then((response) => {
       console.log(response.data);
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('expiry', response.data.expiry);
       this.setState({ data: <Redirect to='/about' /> });
     }).catch((error) => {
       localStorage.removeItem('token');

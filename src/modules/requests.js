@@ -4,6 +4,7 @@ class Requests {
 
   constructor() {
     this.baseUrl = 'http://beer-cellar-api.herokuapp.com';
+    // this.baseUrl = 'http://localhost:9000';
   }
 
   loginUser(credentials) {
