@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import Requests from '../modules/requests';
+import Request from '../modules/requests';
+import Auth from '../modules/auth';
 
 class Login extends Component {
 
@@ -12,7 +13,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    if (localStorage.getItem('expiry') && +new Date(localStorage.getItem('expiry')) > +new Date()) {
+    if (Auth.isSessionValid()) {
       this.setState({ data: <Redirect to='/about' /> });
     } else {
       this.setState({ data: this._renderLoginForm() });
@@ -24,12 +25,11 @@ class Login extends Component {
       email: this._email.value,
       password: this._password.value
     };
-    Requests.loginUser(credentials).then((response) => {
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('expiry', response.data.expiry);
+    Request.loginUser(credentials).then((response) => {
+      Auth.setSession(response.data.token, response.data.expiry);
       this.setState({ data: <Redirect to='/about' /> });
     }).catch((error) => {
-      localStorage.removeItem('token');
+      Auth.endSession();
       console.log(error.response.statusText, 'invalid login!');
     });
   }

@@ -1,6 +1,7 @@
 import axios from 'axios';
+import Auth from './auth';
 
-class Requests {
+class Request {
 
   constructor() {
     this.baseUrl = 'http://beer-cellar-api.herokuapp.com';
@@ -11,7 +12,8 @@ class Requests {
     return axios.post(`${this.baseUrl}/user/login`, credentials);
   }
 
-  getUserProfile(token) {
+  getUserProfile() {
+    const token = Auth.getSessionToken();
     return axios.get(`${this.baseUrl}/user/profile`, {
       headers: {
         'Content-Type': 'application/json',
@@ -20,7 +22,8 @@ class Requests {
     });
   }
 
-  getBeers(token) {
+  getBeers() {
+    const token = Auth.getSessionToken();
     return axios.get(`${this.baseUrl}/beers`, {
       headers: {
         'Content-Type': 'application/json',
@@ -31,4 +34,4 @@ class Requests {
 
 }
 
-export default Requests = new Requests();
+export default Request = new Request();

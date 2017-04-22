@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Requests from '../modules/requests';
+import Auth from '../modules/auth';
 
 class About extends Component {
 
@@ -12,21 +13,18 @@ class About extends Component {
   }
 
   componentDidMount() {
-    const token = localStorage.getItem('token');
-    Requests.getUserProfile(token).then((response) => {
+    Requests.getUserProfile().then((response) => {
       console.log(response);
       this.setState({ data: this._renderUserData(response.data) });
     }).catch((error) => {
-      localStorage.removeItem('token');
-      localStorage.removeItem('expiry');
+      Auth.endSession();
       console.log(error.response.statusText, 'redirecting to login page...');
       this.setState({ data: <Redirect to='/login' /> });
     });
   }
 
   _logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expiry');
+    Auth.endSession();
     this.setState({ data: <Redirect to='/login' /> });
   }
 

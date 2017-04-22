@@ -12,8 +12,7 @@ class About extends Component {
   }
 
   componentDidMount() {
-    const token = localStorage.getItem('token');
-    Requests.getBeers(token).then((response) => {
+    Requests.getBeers().then((response) => {
       this.setState({ data: this._renderBeers(response.data) });
     }).catch((error) => {
       // localStorage.removeItem('token');
