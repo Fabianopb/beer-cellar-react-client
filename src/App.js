@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import Layout from './layout/layout';
 import About from './views/about';
 import Beers from './views/beers';
 import HomeView from './views/homeView';
@@ -12,12 +13,12 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <Layout>
           <Route path="/login" component={ Login } />
           <Route exact path="/" component={ HomeView } />
           <Route path="/about" component={ About } />
           <Route path="/beers" component={ Beers } />
-        </div>
+        </Layout>
       </Router>
     );
   }
