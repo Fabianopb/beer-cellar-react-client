@@ -10,13 +10,14 @@ class MenuBar extends Component {
     super(props);
     this.state = {
       isLoggedIn: this.props.isLoggedIn,
+      username: null,
       redirectOnLogOut: null
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isLoggedIn !== this.state.isLoggedIn) {
-      this.setState({ isLoggedIn: nextProps.isLoggedIn });
+      this.setState({ isLoggedIn: nextProps.isLoggedIn, username: Auth.getSessionUsername() });
     }
   }
 
@@ -24,7 +25,9 @@ class MenuBar extends Component {
     event.preventDefault();
     Auth.clearSession();
     this.props.setLoginState(false);
-    this.setState({ redirectOnLogOut: <Redirect to='/login' /> });
+    this.setState({
+      redirectOnLogOut: <Redirect to='/login' />
+    });
   }
 
   render() {
@@ -34,7 +37,7 @@ class MenuBar extends Component {
         <div className='login-area'>
           { this.state.isLoggedIn ? (
             <div>
-              <span>Welcome! | </span>
+              <span>Welcome { this.state.username }! | </span>
               <a href="#" onClick={ this._logout.bind(this) }>Log out</a>
             </div>
           ) : (

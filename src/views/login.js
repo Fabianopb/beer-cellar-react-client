@@ -26,9 +26,12 @@ class Login extends Component {
       password: this._password.value
     };
     Request.loginUser(credentials).then((response) => {
-      Auth.setSession(response.data.token, response.data.expiry);
-      this.props.setLoginState(true);
-      this.setState({ data: <Redirect to='/about' /> });
+      Auth.setSession.data(response.data.token, response.data.expiry);
+      Request.getUserProfile().then((response) => {
+        Auth.setSession.username(response.data.name);
+        this.props.setLoginState(true);
+        this.setState({ data: <Redirect to='/about' /> });
+      });
     }).catch((error) => {
       Auth.clearSession();
       console.log(error.response.statusText, 'invalid login!');

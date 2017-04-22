@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import Requests from '../modules/requests';
+import Request from '../modules/requests';
 import Auth from '../modules/auth';
 
 class About extends Component {
@@ -13,7 +13,7 @@ class About extends Component {
   }
 
   componentDidMount() {
-    Requests.getUserProfile().then((response) => {
+    Request.getUserProfile().then((response) => {
       console.log(response);
       this.setState({ data: this._renderUserData(response.data) });
     }).catch((error) => {
