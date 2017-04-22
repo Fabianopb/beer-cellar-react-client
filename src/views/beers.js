@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Requests from '../modules/requests';
+import Auth from '../modules/auth';
 
 class About extends Component {
 
@@ -15,7 +16,7 @@ class About extends Component {
     Requests.getBeers().then((response) => {
       this.setState({ data: this._renderBeers(response.data) });
     }).catch((error) => {
-      // localStorage.removeItem('token');
+      Auth.clearSession();
       console.log(error.message);
       console.log(error.response.statusText, 'redirecting to login page...');
       this.setState({ data: <Redirect to='/login' /> });

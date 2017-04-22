@@ -29,7 +29,7 @@ class Login extends Component {
       Auth.setSession(response.data.token, response.data.expiry);
       this.setState({ data: <Redirect to='/about' /> });
     }).catch((error) => {
-      Auth.endSession();
+      Auth.clearSession();
       console.log(error.response.statusText, 'invalid login!');
     });
   }

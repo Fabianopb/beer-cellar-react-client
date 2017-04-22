@@ -9,7 +9,7 @@ class Auth {
     localStorage.setItem('expiry', expiry);
   }
 
-  endSession() {
+  clearSession() {
     localStorage.removeItem('token');
     localStorage.removeItem('expiry');
   }

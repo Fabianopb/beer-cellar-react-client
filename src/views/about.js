@@ -17,14 +17,14 @@ class About extends Component {
       console.log(response);
       this.setState({ data: this._renderUserData(response.data) });
     }).catch((error) => {
-      Auth.endSession();
+      Auth.clearSession();
       console.log(error.response.statusText, 'redirecting to login page...');
       this.setState({ data: <Redirect to='/login' /> });
     });
   }
 
   _logout() {
-    Auth.endSession();
+    Auth.clearSession();
     this.setState({ data: <Redirect to='/login' /> });
   }
 
