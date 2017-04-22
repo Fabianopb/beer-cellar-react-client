@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Auth from './modules/auth';
 
 import Layout from './views/layout';
 import About from './views/about';
@@ -14,7 +15,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: Auth.isSessionValid()
     };
   }
 
@@ -25,7 +26,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Layout isLoggedIn={ this.state.isLoggedIn } >
+        <Layout isLoggedIn={ this.state.isLoggedIn } setLoginState={ this._setLoginState.bind(this) } >
           <Route path="/login" render={ () => <Login setLoginState={ this._setLoginState.bind(this) } /> } />
           <Route exact path="/" component={ HomeView } />
           <Route path="/about" component={ About } />
