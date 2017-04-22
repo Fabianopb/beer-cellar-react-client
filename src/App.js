@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Layout from './layout/layout';
+import Layout from './views/layout';
 import About from './views/about';
 import Beers from './views/beers';
 import HomeView from './views/homeView';
