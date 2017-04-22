@@ -5,14 +5,25 @@ import './menuBar.css'
 
 class MenuBar extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: this.props.isLoggedIn
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isLoggedIn !== this.state.isLoggedIn) {
+      this.setState({ isLoggedIn: nextProps.isLoggedIn });
+    }
+  }
+
   render() {
     return (
       <div className='menu-bar'>
         <div className='logo'>Beer Cellar</div>
         <div className='login-area'>
-          <Link to='/login'>Login</Link>
-          <span> | </span>
-          <Link to='/register'>Sign in</Link>
+          { this.state.isLoggedIn ? 'currently' : 'not'} Logged in
         </div>
       </div>
     );
@@ -20,3 +31,10 @@ class MenuBar extends Component {
 }
 
 export default MenuBar;
+
+
+// <div>Welcome!</div> :
+// <Link to='/login'>Login</Link>
+// <span> | </span>
+// <Link to='/register'>Sign in</Link>
+// }

@@ -10,11 +10,23 @@ import Login from './views/login';
 import './App.css';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: false
+    };
+  }
+
+  _setLoginState(isLoggedIn) {
+    this.setState({ isLoggedIn });
+  }
+
   render() {
     return (
       <Router>
-        <Layout>
-          <Route path="/login" component={ Login } />
+        <Layout isLoggedIn={ this.state.isLoggedIn } >
+          <Route path="/login" render={ () => <Login setLoginState={ this._setLoginState.bind(this) } /> } />
           <Route exact path="/" component={ HomeView } />
           <Route path="/about" component={ About } />
           <Route path="/beers" component={ Beers } />

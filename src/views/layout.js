@@ -6,7 +6,7 @@ class Layout extends Component {
   render() {
     return (
       <div>
-        <MenuBar />
+        <MenuBar isLoggedIn={ this.props.isLoggedIn } />
         {this.props.children}
       </div>
     );

@@ -27,6 +27,7 @@ class Login extends Component {
     };
     Request.loginUser(credentials).then((response) => {
       Auth.setSession(response.data.token, response.data.expiry);
+      this.props.setLoginState(true);
       this.setState({ data: <Redirect to='/about' /> });
     }).catch((error) => {
       Auth.clearSession();
