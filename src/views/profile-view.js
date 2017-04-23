@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import Requests from '../modules/requests';
+import Request from '../modules/requests';
 import Auth from '../modules/auth';
 
-class About extends Component {
+class ProfileView extends Component {
 
   constructor(props) {
     super(props);
@@ -13,20 +13,23 @@ class About extends Component {
   }
 
   componentDidMount() {
-    Requests.getBeers().then((response) => {
-      this.setState({ data: this._renderBeers(response.data) });
+    Request.getUserProfile().then((response) => {
+      console.log(response);
+      this.setState({ data: this._renderUserData(response.data) });
     }).catch((error) => {
       Auth.clearSession();
-      console.log(error.message);
       console.log(error.response.statusText, 'redirecting to login page...');
       this.setState({ data: <Redirect to='/login' /> });
     });
   }
 
-  _renderBeers(beers) {
-    return beers.map((beer) => {
-      return ( <div key={beer._id}>Beer {beer.name} from {beer.country}</div> );
-    });
+  _renderUserData(user) {
+    return (
+      <div>
+        <p>User Name: {user.name}</p>
+        <p>email: {user.email}</p>
+      </div>
+    );
   }
 
   render() {
@@ -38,4 +41,4 @@ class About extends Component {
   }
 }
 
-export default About;
+export default ProfileView;

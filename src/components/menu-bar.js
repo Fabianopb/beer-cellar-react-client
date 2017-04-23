@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Auth from '../modules/auth';
 
-import './menuBar.css'
+import './menu-bar.css'
 
 class MenuBar extends Component {
 
@@ -37,7 +37,7 @@ class MenuBar extends Component {
           { this.state.isLoggedIn ? (
             <div>
               <span>Welcome { Auth.getSessionUsername() }! | </span>
-              <Link to='/about'>My profile</Link><span> | </span>
+              <Link to='/profile'>My profile</Link><span> | </span>
               <Link to='/beers'>My beers</Link><span> | </span>
               <a href="#" onClick={ this._logout.bind(this) }>Log out</a>
             </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './homeView.css'
+import './home-view.css'
 
 class HomeView extends Component {
   render() {

@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import Request from '../modules/requests';
 import Auth from '../modules/auth';
 
-class Login extends Component {
+class LoginView extends Component {
 
   constructor(props) {
     super(props);
@@ -57,4 +57,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default LoginView;

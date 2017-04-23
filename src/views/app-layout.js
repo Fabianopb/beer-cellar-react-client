@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import MenuBar from '../components/menuBar';
+import MenuBar from '../components/menu-bar';
 
-class Layout extends Component {
+class AppLayout extends Component {
   render() {
     return (
       <div>
@@ -13,4 +13,4 @@ class Layout extends Component {
   }
 }
 
-export default Layout;
+export default AppLayout;
