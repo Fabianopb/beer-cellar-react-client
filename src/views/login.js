@@ -30,7 +30,7 @@ class Login extends Component {
       Request.getUserProfile().then((response) => {
         Auth.setSession.username(response.data.name);
         this.props.setLoginState(true);
-        this.setState({ data: <Redirect to='/about' /> });
+        this.setState({ data: <Redirect to='/beers' /> });
       });
     }).catch((error) => {
       Auth.clearSession();
