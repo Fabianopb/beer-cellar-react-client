@@ -8,7 +8,7 @@ class LoginView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: null
+      data: 'Loading...'
     };
   }
 
@@ -21,6 +21,7 @@ class LoginView extends Component {
   }
 
   _login() {
+    this.setState({ data: 'Loading...' });
     const credentials = {
       email: this._email.value,
       password: this._password.value
@@ -34,6 +35,7 @@ class LoginView extends Component {
       });
     }).catch((error) => {
       Auth.clearSession();
+      this.setState({ data: this._renderLoginForm() });
       console.log(error.response.statusText, 'invalid login!');
     });
   }
