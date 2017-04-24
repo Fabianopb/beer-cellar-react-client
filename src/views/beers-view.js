@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom';
 import Requests from '../modules/requests';
 import Auth from '../modules/auth';
 
+import Beer from '../components/beer';
+
 class BeersView extends Component {
 
   constructor(props) {
@@ -25,7 +27,7 @@ class BeersView extends Component {
 
   _renderBeers(beers) {
     return beers.map((beer) => {
-      return ( <div key={beer._id}>Beer {beer.name} from {beer.country}</div> );
+      return ( <Beer key={beer._id} name={beer.name} country={beer.country} /> );
     });
   }
 
