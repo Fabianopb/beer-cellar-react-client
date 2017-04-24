@@ -22,11 +22,7 @@ class LoginView extends Component {
 
   _login() {
     this.setState({ data: 'Loading...' });
-    const credentials = {
-      email: this._email.value,
-      password: this._password.value
-    };
-    Request.loginUser(credentials).then((response) => {
+    Request.loginUser(this._email.value, this._password.value).then((response) => {
       Auth.setSession.data(response.data.token, response.data.expiry);
       Request.getUserProfile().then((response) => {
         Auth.setSession.username(response.data.name);

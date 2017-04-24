@@ -14,7 +14,6 @@ class ProfileView extends Component {
 
   componentDidMount() {
     Request.getUserProfile().then((response) => {
-      console.log(response);
       this.setState({ data: this._renderUserData(response.data) });
     }).catch((error) => {
       Auth.clearSession();
