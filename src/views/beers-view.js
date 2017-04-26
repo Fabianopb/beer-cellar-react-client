@@ -40,9 +40,7 @@ class BeersView extends Component {
 
   _addBeer() {
     Requests.postBeer(this._name.value, this._country.value).then((response) => {
-      // TODO: Refresh the component / concat the new beer
-      console.log('We have to refresh the component!', response.data);
-      // this.setState({ data: this.state.data.concat([beer]) });
+      this.setState({ data: this.state.data.concat(this._renderBeers([response.data.beer])) });
     }).catch((error) => {
       console.log(error.response);
     });
